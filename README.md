@@ -1,10 +1,8 @@
 # Javascript-testing-casperJS
 ###Javascript testing with casperJS
 
-`WP-test-wrong-login.js`
+`WP-test-wrong-login.js` : Find the login form and try a wrong username and password
 
-Find the login form and try a wrong username and password
+`WP-test-check-pages.js` : Check pages and titles
 
-`WP-test-check-pages.js`
-
-Check pages and titles
+`160304wip.js` : Locate HTML/CSS blocks + links
