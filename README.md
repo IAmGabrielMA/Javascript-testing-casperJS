@@ -6,3 +6,5 @@
 `WP-test-check-pages.js` : Check pages and titles
 
 `160304wip.js` : Locate HTML/CSS blocks + links
+
+`VP-test-160305.js`: Clickthough added
