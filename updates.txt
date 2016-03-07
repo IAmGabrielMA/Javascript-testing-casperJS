@@ -1,0 +1,9 @@
+2016/03/05
+main file
+
+2016/03/06
+
+added cs selectors fo testing
+
+2016/03/07
+added clickthorugh in about page
