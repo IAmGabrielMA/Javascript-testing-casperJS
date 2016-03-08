@@ -19,37 +19,56 @@ casper.test.begin('TEST: init testing ' + baseURL, function(){
 	});
 
 	casper.then(function(){
-		
+		// comma separated strings for all the links in the website
 		links = links.concat(this.evaluate(getLinks));
-		
-		for (var i = links.length - 1; i >= 0; i--) {
-			// insert regex here
-			// if (links[i] == '#') {
-			// 	links[i] = '';
-			// }
-			// regex to find the links to clickthrough
-			var re = new RegExp('www.susanegan.net\/.*');
-			//var re2 = new RegExp('susanegan.net\/.*');
-			if (re.test(links[i])) {
-				this.echo(links[i]);
-			}
-			// 	//good, now add to new array
-				
-			// 	linksToCheck.push(links[i]);
-			// 	console.log(linksToCheck[i])
-			// 	//this.echo(linksToCheck[i]);
-			// 	var output = linksToCheck[i]
-			// 	//console.log(output.toString());
-			// 	//this.test.assertUrlMatch(output, 'New location is ' + this.getCurrentUrl());
-			// }
 
-			// regOk = RegExp('www.susanegan.net\/.*').test(links[i]);
-			// 	if (regOk) {
-			// 		this.test.assertUrlMatch(regOk, 'New location is ' + this.getCurrentUrl());					
-			// 	}
-			
+		// =========================
+		// FILTER WAY 2: BETTER WAY TO DEAL WITH FILTERED VALID LINKS
+		var validElements = []
+		var re = new RegExp('www.susanegan.net\/.*');
+
+		function replaceElement(element, index, array){
+
+			if (re.test(element)) {
+				validElements.push(array[index]);
+			}
 		}
+		links.forEach(replaceElement);
+		//console.log(validElements);
+		// from here we have a array with all the valid pages we must check
+		//this.test.assertUrlMatch(validElements[0], 'New location is ' + this.getCurrentUrl()); //pass
+		//this.test.assertUrlMatch(validElements[1], 'New location is ' + this.getCurrentUrl()); //fail because we must click first and change page
+		// PROBLEM NOW: ~~do it recursively~~solved with casper.each()
 		
+		casper.each(validElements, function(self, validElement){
+			self.thenOpen(validElement, function(){
+				this.echo(this.getTitle());
+				this.test.assertUrlMatch(validElement, 'New location is ' + this.getCurrentUrl());
+			});
+		});
+
+		// this does not works for some reason		
+		// for (var i = 0; i >= validElements.length - 1; i++) {
+		// 	//console.log(validElements[i]);
+		// 	this.test.assertUrlMatch(validElements[i], 'New location is ' + this.getCurrentUrl());
+		// }
+
+		// =========================
+
+		// =========================
+		// FILTER WAY 1: WORKS
+		//for (var i = links.length - 1; i >= 0; i--) {
+			// prints out all the links
+			//this.echo(links[i]);
+
+			// prints out the valid links
+			// var re = new RegExp('www.susanegan.net\/.*');
+			// if (re.test(links[i])) {
+			// 	this.echo(links[i]);
+			// }
+			
+		//}
+		// =========================
 	});
 
 

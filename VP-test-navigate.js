@@ -82,9 +82,10 @@ casper.test.begin('TEST: Navigating through ' + baseURL, function(){
 				var re = new RegExp('www.susanegan.net\/.*');
 			
 				if (re.test(links[i])) {
+					this.echo('Checking permalinks...');
 					this.echo(links[i]);
-					var output = links[i];
-					console.log(typeof output);
+					//var output = links[i];
+					//console.log(typeof output); //-> strings!
 					// This asserts fails due to "assertUrlMatch() only accepts strings or regexps", maybe assertUrlMatch() is not the best choice. 
 					// casper.then(function checkEachURL(output){
 					// 	this.test.assertUrlMatch(links[i], 'New location -> ' + this.getCurrentUrl());	
