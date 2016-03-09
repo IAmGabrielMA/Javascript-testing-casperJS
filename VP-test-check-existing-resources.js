@@ -24,6 +24,12 @@ casper.test.begin('TEST: init testing resource checker ' + baseURL, function(){
     	}
     	if (this.resourceExists('logo.png')) {
     	    this.echo(' logo loaded');
+            //var resource = 'logo';
+            // casper.test.assertResourceExists(function(resource) {
+            //     return resource.url.match('logo.png');
+            // });
+            casper.test.assertVisible('img.logo');
+
     	} else {
     	    this.echo(' logo not loaded', 'ERROR');
     	}
@@ -50,23 +56,31 @@ casper.test.begin('TEST: init testing resource checker ' + baseURL, function(){
     	});
     });
 
+    casper.then(function(){
+        //.content
+        console.log('content check...');
+        if (this.visible('.content')) {
+            casper.test.assert(true, "Content is rendering correctly");
+        }
+    });
+
     // list of resources to check
     // everypage: bottom
     // individual pages, logo.png?
     // programs/concert concert-1.jpg, belle-232x300.jpg, housewife-232x300.jpg
     // the problem is that is spefific for each page, won't run in the page loop (?)
     // possible solution
-    casper.then(function(){
-    	console.log('testing wildcards');
-    	this.clickLabel('About', 'a');
-    	casper.then(function(){
-    		if (this.resourceExists(/^*.jpg/)) {
-    		    this.echo(' loaded');
-	    	} else {
-	    	    this.echo(' not loaded', 'ERROR');
-	    	}
-    	});
-    });
+    // casper.then(function(){
+    // 	console.log('testing wildcards');
+    // 	this.clickLabel('About', 'a');
+    // 	casper.then(function(){
+    // 		if (this.resourceExists(/^*.jpg/)) {
+    // 		    this.echo(' loaded');
+	   //  	} else {
+	   //  	    this.echo(' not loaded', 'ERROR');
+	   //  	}
+    // 	});
+    // });
     // appearances no images
 });
 
