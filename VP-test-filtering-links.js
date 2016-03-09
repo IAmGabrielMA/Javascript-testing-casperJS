@@ -1,5 +1,5 @@
 
-var baseURL = 'http://www.susanegan.net'
+var baseURL = 'http://dev.susanegan.net/'
 var links = [];
 var linksToCheck = [];
 
@@ -25,7 +25,7 @@ casper.test.begin('TEST: init testing ' + baseURL, function(){
 		// =========================
 		// FILTER WAY 2: BETTER WAY TO DEAL WITH FILTERED VALID LINKS
 		var validElements = []
-		var re = new RegExp('www.susanegan.net\/.*');
+		var re = new RegExp('http://dev.susanegan.net\/.*');
 
 		function replaceElement(element, index, array){
 

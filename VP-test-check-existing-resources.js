@@ -28,16 +28,17 @@ casper.test.begin('TEST: init testing resource checker ' + baseURL, function(){
     	    this.echo(' logo not loaded', 'ERROR');
     	}
 
-    	console.log('changing to about page...');
+    	//console.log('changing to about page...');
+    	// here we would do a casper.then() and change page to check
     });
 
-	// prints out all the images in the site
-    casper.then(function(){
-		images = images.concat(this.evaluate(getImages));
-		console.log(images);
-	});
+	// prints out all the images in the site, ok
+ //    casper.then(function(){
+	// 	images = images.concat(this.evaluate(getImages));
+	// 	console.log(images);
+	// });
 
-    // check specific resource 
+    // change to about page clicking on the link and check specific resource 
     casper.then(function(){
     	this.clickLabel('About', 'a');
     	casper.then(function(){
@@ -48,6 +49,25 @@ casper.test.begin('TEST: init testing resource checker ' + baseURL, function(){
 	    	}
     	});
     });
+
+    // list of resources to check
+    // everypage: bottom
+    // individual pages, logo.png?
+    // programs/concert concert-1.jpg, belle-232x300.jpg, housewife-232x300.jpg
+    // the problem is that is spefific for each page, won't run in the page loop (?)
+    // possible solution
+    casper.then(function(){
+    	console.log('testing wildcards');
+    	this.clickLabel('About', 'a');
+    	casper.then(function(){
+    		if (this.resourceExists(/^*.jpg/)) {
+    		    this.echo(' loaded');
+	    	} else {
+	    	    this.echo(' not loaded', 'ERROR');
+	    	}
+    	});
+    });
+    // appearances no images
 });
 
 casper.run(function(){
