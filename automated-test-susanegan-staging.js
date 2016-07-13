@@ -1,9 +1,9 @@
 
-var baseURL = 'http://www.susanegan.net/'
+var baseURL = 'http://staging.susanegan.net/'
 var links = [];
 var linksToCheck = [];
 
-casper.test.begin('Testing production version of ' + baseURL, function(){
+casper.test.begin('Testing staging version of ' + baseURL, function(){
 
 	/*
 	*	Grab all the links in the website
@@ -42,7 +42,7 @@ casper.test.begin('Testing production version of ' + baseURL, function(){
 
 		links = links.concat(this.evaluate(getLinks));
 		var validElements = []
-		var re = new RegExp('http://www.susanegan.net\/.*');
+		var re = new RegExp('http://staging.susanegan.net\/.*');
 
 		function replaceElement(element, index, array){
 

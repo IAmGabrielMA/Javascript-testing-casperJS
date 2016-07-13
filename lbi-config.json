@@ -1,0 +1,6 @@
+{
+	"site":"businessreport",
+	"urlDev":"http://dev.businessreport.com/",
+	"urlStaging":"http://staging.businessreport.com/",
+	"urlProduction":"https://www.businessreport.com"
+}

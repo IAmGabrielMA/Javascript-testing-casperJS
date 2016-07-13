@@ -3,7 +3,7 @@ var baseURL = 'http://dev.susanegan.net/'
 var links = [];
 var linksToCheck = [];
 
-casper.test.begin('Testing development & staging version of ' + baseURL, function(){
+casper.test.begin('Testing development version of ' + baseURL, function(){
 
 	/*
 	*	Grab all the links in the website
@@ -68,7 +68,7 @@ casper.test.begin('Testing development & staging version of ' + baseURL, functio
 			        if (this.visible('.content')) {
 			            casper.test.assert(true, "Content is rendering correctly");
 			        } else {
-			        	casper.test.assert(false, "Content is not rendering");
+			        	casper.test.assert(false, "Content is not rendering at " + this.getCurrentUrl());
 			        }
 			    });
 
@@ -80,7 +80,7 @@ casper.test.begin('Testing development & staging version of ' + baseURL, functio
 					if (this.visible('.fa-facebook') && this.visible('.fa-youtube') && this.visible('.fa-twitter') ) {					
 						casper.test.assert(true, "Footer is rendering correctly");
 					} else{
-						casper.test.assert(false, "Footer is not rendering");
+						casper.test.assert(false, "Footer is not rendering at " + this.getCurrentUrl());
 					}
 				});
 			});

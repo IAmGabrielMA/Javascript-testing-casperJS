@@ -63,14 +63,14 @@ casper.test.begin('Testing production version of ' + baseURL, function(){
 				/*
 				*	Checks if the DOM element matching class="content" is visible
 				*/
-				// casper.then(function(){
+				casper.then(function(){
 			        
-			 //        if (this.visible('.content')) {
-			 //            casper.test.assert(true, "Content is rendering correctly");
-			 //        } else {
-			 //        	casper.test.assert(false, "Content is not rendering");
-			 //        }
-			 //    });
+			        if (this.visible('.content')) {
+			            casper.test.assert(true, "Content is rendering correctly");
+			        } else {
+			        	casper.test.assert(false, "Content is not rendering at " + this.getCurrentUrl());
+			        }
+			    });
 
 				/*
 				*	Check social media icon at the footer of each page.
@@ -78,10 +78,10 @@ casper.test.begin('Testing production version of ' + baseURL, function(){
 				casper.then(function(){
 					//.fb-like
 					//.fb-like
-					if (this.visible('.fb-like') ) {					
+					if (this.visible('.fb-like') ) {				
 						casper.test.assert(true, "Footer is rendering correctly");
 					} else{
-						casper.test.assert(false, "Footer is not rendering");
+						casper.test.assert(false, "Footer is not rendering at " + this.getCurrentUrl());
 					}
 				});
 			});

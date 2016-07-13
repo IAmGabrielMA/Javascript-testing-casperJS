@@ -1,9 +1,9 @@
 
-var baseURL = 'http://www.susanegan.net/'
+var baseURL = 'http://staging.amazinggracevineyard.com/'
 var links = [];
 var linksToCheck = [];
 
-casper.test.begin('Testing production version of ' + baseURL, function(){
+casper.test.begin('Testing staging version of ' + baseURL, function(){
 
 	/*
 	*	Grab all the links in the website
@@ -42,7 +42,7 @@ casper.test.begin('Testing production version of ' + baseURL, function(){
 
 		links = links.concat(this.evaluate(getLinks));
 		var validElements = []
-		var re = new RegExp('http://www.susanegan.net\/.*');
+		var re = new RegExp('http://staging.amazinggracevineyard.com\/.*');
 
 		function replaceElement(element, index, array){
 
@@ -73,11 +73,12 @@ casper.test.begin('Testing production version of ' + baseURL, function(){
 			    });
 
 				/*
-				*	Check social media icons at the footer of each page.
+				*	Check social media icon at the footer of each page.
 				*/
 				casper.then(function(){
-				
-					if (this.visible('.fa-facebook') && this.visible('.fa-youtube') && this.visible('.fa-twitter') ) {					
+					//.fb-like
+					//.fb-like
+					if (this.visible('.fb-like') ) {					
 						casper.test.assert(true, "Footer is rendering correctly");
 					} else{
 						casper.test.assert(false, "Footer is not rendering at " + this.getCurrentUrl());
